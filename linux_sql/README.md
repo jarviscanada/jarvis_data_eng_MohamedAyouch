@@ -1,4 +1,4 @@
-# **# Introduction**
+# **Introduction**
 
 ### This project aims to fulfill the requirements of the Linux Cluster Administration (LCA) team. The LCA team needs to effectively track and record the hardware specifications of each node in their infrastructure while also monitoring the real-time resource usage, including CPU and memory.
 
@@ -9,7 +9,7 @@
 	- Git for version control
 	- PSQL and PostgreSQL to store my data and manage and modify my database
 
-# **# Quickstart**
+# **Quickstart**
 
 ### 	- Start a psql instance
 
@@ -43,15 +43,15 @@ crontab -e
 * * * * * bash (Insert your full path to host_usage.sh) localhost 5432 host_agent postgres password > /tmp/host_usage.log
 ```
 
-# **# Implementation**
+# **Implementation**
 
 ### The project is implemented using 2 bash scripts that will be installed on each Linux cluster and they will collect and store the necessary data in a Postgres database. The first script, host_info will only be executed once and will collect and store hardware data, while the other script, host_usage will be executed every minute and will collect and store system resource utilization. 
 
-# **# Architecture**
+# **Architecture**
 
 ![The cluster diagram](assets/Cluster_Diagram.png)
 
-# **# Scripts**
+# **Scripts**
 
 ### - psql_docker.sh
 
@@ -79,7 +79,7 @@ It's executed every minute.
 Crontab is used to execute automatically the host_usage script every minute.
 ```
 
-# **# Database Modeling**
+# **Database Modeling**
 
 ### - host_info
 
@@ -108,15 +108,15 @@ Crontab is used to execute automatically the host_usage script every minute.
 | disk_available | INT4 NOT NULL      | Root directory available disk space                                              |
 
 
-# **# Test**
+# **Test**
 
 ### I created an empty database called host_agent and to test my ddl.sql script I executed it and verified if the host_usage and host_info tables were created, which was the case.
 
-# **# Deployment**
+# **Deployment**
 
 ### I used a docker container so that any user would have access to Postgres and PSQL when using the system without having to download them. I also changed the execution permission on my scripts, especially host_usage.sh so that Crontab can execute it every minute. Finally, I pushed the system to Github so that the users can use the latest version of the project.
 
-# **#Improvements**
+# **Improvements**
 
 ### - Add an alert system that would notify the user when their resource utilization exceeds a certain threshold
 ### - Daily report of the data collected
