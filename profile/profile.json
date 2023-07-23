@@ -1,0 +1,69 @@
+{
+  "education": [
+    {
+      "awards_achievements": null,
+      "degree": "Bachelor of Enginering",
+      "department": "Software Engineering",
+      "duration": "2018-2023",
+      "school_name": "Concordia University"
+    }
+  ],
+  "github_repo_root_url": "https://github.com/jarviscanada/jarvis_data_eng_MohamedAyouch",
+  "highlighted_projects": [
+    {
+      "description": "Allows user to either create a new account or login to an existing account. The types of accounts are doctors, health officials and patients. The website is build using the MERN stack (MongoDB, Express, React and Node JS).",
+      "git_url": "https://github.com/momo597/Authentification-Project",
+      "name": "Medical website credentials page"
+    }
+  ],
+  "jarvis_projects": [
+    {
+      "description": "Monitor a cluster of linux nodes using bash scripts to retrieve the user's hardware data and resource usage data and store it in a Postgres database. The database is accesed via a Docker container and the resource usage recollection script is executed every minute using Crontab.",
+      "git_url": "/linux_sql",
+      "name": "Cluster Monitor"
+    }
+  ],
+  "name": "Mohamed Ayouch",
+  "others": [
+    {
+      "bullets": [
+        "Basketball player",
+        "Gaming",
+        "Anime"
+      ],
+      "title": "Activities/Hobbies"
+    }
+  ],
+  "professional_experience": [
+    {
+      "company": "Jarvis",
+      "description": "Donec mattis sed justo et sagittis. Vestibulum lacinia nulla ipsum. Curabitur imperdiet nibh vitae leo lacinia laoreet. Nullam accumsan, lectus ut maximus ultricies, augue justo egestas mi, vel bibendum felis.",
+      "duration": "2023-present",
+      "title": "Technical Consultant"
+    }
+  ],
+  "skills": {
+    "competent": [
+      "React",
+      "Javascript",
+      "MongoDB",
+      "Python",
+      "C++"
+    ],
+    "familiar": [
+      "NodeJS",
+      "Express",
+      "C#",
+      "Angular",
+      "Vue JS"
+    ],
+    "proficient": [
+      "Java",
+      "Linux/Bash",
+      "RDBMS/SQL",
+      "Agile/Scrum",
+      "Git"
+    ]
+  },
+  "summary": "I am a recent software engineering graduate from Concordia University, and my love for the world of software began when I was just 16 years old, exploring Java coding. Ever since that moment, I knew I wanted to build a career in this field. Although this position with Jarvis is my first work experience in the domain, I had the opportunity to work on a significant Capstone project during my bachelor's studies. This project not only enriched my skills in web development but also offered valuable insights into project management. I am excited to bring my passion and dedication to a dynamic role in the software industry."
+}
