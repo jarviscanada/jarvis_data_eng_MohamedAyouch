@@ -1,0 +1,79 @@
+# Preferred name (Characters only)
+name: "Mohamed Ayouch"
+# Your GitHub repo root URL
+github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_MohamedAyouch
+
+# Introduce yourself, your academic and professional background.
+# What excites you about the software industry and your passion. At least 80 words
+summary: I am a recent software engineering graduate from Concordia University, and my love for the world of software began when I was just 16 years old, exploring Java coding. Ever since that moment, I knew I wanted to build a career in this field. Although this position with Jarvis is my first work experience in the domain, I had the opportunity to work on a significant Capstone project during my bachelor's studies. This project not only enriched my skills in web development but also offered valuable insights into project management. I am excited to bring my passion and dedication to a dynamic role in the software industry.
+
+# Group your skills by level.
+# Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
+skills:
+  # At least 5 skills
+  proficient:
+    - Java
+    - Linux/Bash
+    - RDBMS/SQL
+    - Agile/Scrum
+    - Git
+  # At least 5 skills
+  competent:
+    - React
+    - Javascript
+    - MongoDB
+    - Python
+    - C++
+  # At least 5 skills
+  familiar:
+    - NodeJS
+    - Express
+    - C#
+    - Angular
+    - Vue JS
+
+# List of Jarvis projects
+jarvis_projects:
+  - name: "Cluster Monitor"
+    git_url: "/linux_sql"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: Monitor a cluster of linux nodes using bash scripts to retrieve the user's hardware data and resource usage data and store it in a Postgres database. The database is accesed via a Docker container and the resource usage recollection script is executed every minute using Crontab.
+
+# List of personal or academic projects
+# Feel free to add more projects
+highlighted_projects:
+    #project name
+  - name: "Medical website credentials page"
+    #URL is optional
+    git_url: "https://github.com/momo597/Authentification-Project"
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: Allows user to either create a new account or login to an existing account. The types of accounts are doctors, health officials and patients. The website is build using the MERN stack (MongoDB, Express, React and Node JS).
+
+#List of professional experience
+#The job description allows hiring managers to understand your job and the technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+#The description must be more than 25 words. If your experience is not software related, please focus on soft skills and achievements (e.g. team collaboration, problem-solving, improvements, communication).
+professional_experience:
+  #Write your Jarvis role as a professional experience rather than training.
+  - title: "Technical Consultant"
+    company: "Jarvis"
+    duration: "2023-present"
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: "Donec mattis sed justo et sagittis. Vestibulum lacinia nulla ipsum. Curabitur imperdiet nibh vitae leo lacinia laoreet. Nullam accumsan, lectus ut maximus ultricies, augue justo egestas mi, vel bibendum felis."
+
+#List of edcuation
+education: 
+  - school_name: "Concordia University"
+    duration: "2018-2023"
+    degree: "Bachelor of Enginering"
+    department: "Software Engineering"
+    #optional
+    awards_achievements: 
+
+others:
+    #category
+  - title: "Activities/Hobbies"
+    bullets:
+      - "Basketball player"
+      - "Gaming"
+      - "Anime"
