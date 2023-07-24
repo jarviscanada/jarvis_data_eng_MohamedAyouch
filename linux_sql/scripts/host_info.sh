@@ -23,7 +23,7 @@ cpu_model=$(echo "$lscpu_out"  | egrep "^Model name:"|awk -F':' '{print $2}' | x
 cpu_mhz=$(echo "$lscpu_out"  | egrep "^CPU MHz:" | awk '{print $3}' | tr -d 'K' | xargs)
 l2_cache=$(echo "$lscpu_out"  | egrep "^L2 cache:" | awk '{print $3}'| tr -d 'K' | xargs)
 timestamp="$(date +"%Y-%m-%d %H:%M:%S")"
-total_mem=$(vmstat --unit M | tail -1 | awk '{print $4}')
+mem_total=$(cat /proc/meminfo | egrep "^MemTotal:" | awk '{ print $2}' | xargs)
 
 #SQL command to insert a new row to host_info table
 insert_smt="INSERT INTO host_info(hostname,cpu_number, cpu_architecture , cpu_model, cpu_mhz,l2_cache,timestamp,total_mem) VALUES('$hostname', $cpu_number, '$cpu_arch','$cpu_model', $cpu_mhz,$l2_cache, '$timestamp',$total_mem)";
