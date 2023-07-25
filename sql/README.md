@@ -1,5 +1,7 @@
 # Introduction
 
+This project's aim is to practice our SQL skills by creating multiple queries for multiple questions. In order to do this, I used the website https://pgexercises.com/ to write and test my queries and the website https://codebeautify.org/sqlformatter to format my queries.
+
 # SQL queries
 
 ###### Table Setup (DDL)
