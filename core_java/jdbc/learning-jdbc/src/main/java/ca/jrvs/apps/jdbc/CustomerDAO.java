@@ -13,6 +13,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
   private static final String GET_ONE = "SELECT customer_id, first_name, last_name, email, phone, address, city, state, zipCode FROM customer WHERE customer_id = ?";
   private static final String UPDATE = "UPDATE customer SET first_name = ?, last_name = ?, email = ?, phone = ?, address = ?, city = ?, state = ?, zipCode = ? WHERE customer_id = ?";
   private final static String DELETE = "DELETE FROM customer WHERE customer_id=?";
+
   public CustomerDAO(Connection connection) {
     super(connection);
   }
@@ -60,7 +61,13 @@ public class CustomerDAO extends DataAccessObject<Customer> {
   @Override
   public Customer update(Customer dto) {
     Customer customer = null;
-    try(PreparedStatement statement = connection.prepareStatement(UPDATE)) {
+    try {
+      this.connection.setAutoCommit(false);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw new RuntimeException(e);
+    }
+    try (PreparedStatement statement = connection.prepareStatement(UPDATE)) {
       statement.setString(1, dto.getFirstName());
       statement.setString(2, dto.getLastName());
       statement.setString(3, dto.getEmail());
@@ -69,10 +76,17 @@ public class CustomerDAO extends DataAccessObject<Customer> {
       statement.setString(6, dto.getCity());
       statement.setString(7, dto.getState());
       statement.setString(8, dto.getZipCode());
-      statement.setLong(9,dto.getId());
+      statement.setLong(9, dto.getId());
       statement.execute();
+      this.connection.commit();
       customer = this.findById(dto.getId());
     } catch (SQLException e) {
+      try {
+        this.connection.rollback();
+      } catch (SQLException ex) {
+        ex.printStackTrace();
+        throw new RuntimeException(ex);
+      }
       e.printStackTrace();
       throw new RuntimeException(e);
     }
@@ -108,12 +122,12 @@ public class CustomerDAO extends DataAccessObject<Customer> {
    */
   @Override
   public void delete(long id) {
-  try (PreparedStatement statement = connection.prepareStatement(DELETE)){
-    statement.setLong(1,id);
-    statement.execute();
-  } catch (SQLException e) {
-    e.printStackTrace();
-    throw new RuntimeException(e);
-  }
+    try (PreparedStatement statement = connection.prepareStatement(DELETE)) {
+      statement.setLong(1, id);
+      statement.execute();
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw new RuntimeException(e);
+    }
   }
 }
