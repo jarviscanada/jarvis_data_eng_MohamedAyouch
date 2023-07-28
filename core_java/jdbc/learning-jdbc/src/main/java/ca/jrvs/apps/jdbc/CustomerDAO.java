@@ -19,7 +19,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
 
   /**
    * @param id
-   * @return
+   * @return the customer DTO found with the query
    */
   @Override
   public Customer findById(long id) {
@@ -55,7 +55,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
 
   /**
    * @param dto
-   * @return
+   * @return the customer DTO updated with the query
    */
   @Override
   public Customer update(Customer dto) {
@@ -81,7 +81,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
 
   /**
    * @param dto
-   * @return
+   * @return the customer DTO created with the query
    */
   @Override
   public Customer create(Customer dto) {

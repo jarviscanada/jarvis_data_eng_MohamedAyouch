@@ -32,7 +32,7 @@ public class OrderDAO extends DataAccessObject<Order> {
 
   /**
    * @param id
-   * @return
+   * @return the Order DTO found with the query
    */
   @Override
   public Order findById(long id) {
