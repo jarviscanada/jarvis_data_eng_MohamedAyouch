@@ -3,7 +3,7 @@
 
 # **Implementation**
 ## **ER Diagram**
-![ER Diagram](../../../Downloads/ER Diagram.png)
+![ER Diagram](assets/ER_Diagram.png)
 
 ## **Design Patterns**
 ### **The Data Access Object is a structural pattern that provides an interface that isolates the business layer of our application from our database. It encapsulates the CRUD operations needed for the data model and hides them from the business logic. In doing so, it assures a separation of concerns, which makes the code more maintainable and testable.**
