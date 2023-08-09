@@ -29,7 +29,7 @@ public interface LambdaStreamEx {
    * @param pattern
    * @return
    */
-  Stream<String> filter(Stream<String>, String pattern);
+  Stream<String> filter(Stream<String> stream, String pattern);
 
   /**
    * Create an intStream from an array
@@ -103,7 +103,7 @@ public interface LambdaStreamEx {
 
   /**
    * Square each number from the input.
-   * 
+   *
    * @param ints
    * @return
    */
