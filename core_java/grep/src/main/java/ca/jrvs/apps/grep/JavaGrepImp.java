@@ -1,7 +1,14 @@
 package ca.jrvs.apps.grep;
 
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+
+import java.nio.file.FileVisitOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -23,50 +30,46 @@ public class JavaGrepImp implements JavaGrep {
 
   @Override
   public void process() throws IOException {
-    List <String> matchedLines = new ArrayList<String>();
+    try (Stream<Path> files = listFiles(getRootPath())) {
+      List<String> matchedLines = files
+          .flatMap(file -> readLines(file.toFile()).filter(this::containsPattern))
+          .collect(Collectors.toList());
 
-    for(File file:listFiles(getRootPath())){
-      for(String line: readLines(file)){
-        if(containsPattern(line)) matchedLines.add(line);
-      }
+      writeToFile(matchedLines);
     }
-    writeToFile(matchedLines);
   }
 
   @Override
-  public List<File> listFiles(String rootDir) {
-    File dir = new File(rootDir);
-    List<File> output = null;
-
-    if (dir.exists() && dir.isDirectory()) {
-      output = Arrays.asList(dir.listFiles());
-      if (output.isEmpty()) {
-        logger.error("Error: No files found in this directory");
-      }
-    } else {
-      logger.error("Error: The specified directory doesn't exist or is not a directory");
-    }
-    return output;
-  }
-
-  @Override
-  public List<String> readLines(File inputFile) {
-    List<String> lines = new ArrayList<String>();
-
-    try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
-      String line;
-      while ((line = reader.readLine()) != null) {
-        lines.add(line);
-      }
-
-    } catch (FileNotFoundException e) {
-      logger.error("Error: This file doesn't exist");
-      throw new RuntimeException(e);
+  public Stream<Path> listFiles(String rootDir) {
+    try {
+      return Files.walk(Paths.get(rootDir), FileVisitOption.FOLLOW_LINKS)
+          .filter(Files::isRegularFile);
     } catch (IOException e) {
-      logger.error("Error: Unable to read this file");
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  @Override
+  public Stream<String> readLines(File inputFile) {
+    try {
+      BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+      return reader.lines().onClose(() -> closeReader(reader));
+    } catch (FileNotFoundException e) {
+      logger.error("Error: this file doesn't exist");
       throw new RuntimeException(e);
     }
-    return lines;
+  }
+
+  private void closeReader(BufferedReader reader){
+    try{
+      if(reader!=null){
+        reader.close();
+      }
+    } catch (IOException e) {
+      logger.error("Error: Unable to close the file reader");
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
