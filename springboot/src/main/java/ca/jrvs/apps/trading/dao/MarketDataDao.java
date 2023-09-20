@@ -46,7 +46,6 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
 
   private Optional<String> executeHttpGet(String url) {
     HttpGet httpGet = new HttpGet(url);
-    System.out.println("Inside httpGet");
 
     try {
       HttpResponse response = getHttpClient(url).execute(httpGet);
@@ -90,16 +89,13 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
   public Optional<IexQuote> findById(String ticker) {
     Optional<IexQuote> iexQuote;
     List<IexQuote> quotes = findAllById(Collections.singletonList(ticker));
-    System.out.println("Inside marketDAO");
     if (quotes.size() == 0) {
       return Optional.empty();
     } else if (quotes.size() == 1) {
-      System.out.println("MarketDAO works");
       iexQuote = Optional.of(quotes.get(0));
     } else {
       throw new DataRetrievalFailureException("Unexpected number of quotes");
     }
-    System.out.println("IexQuote: " + iexQuote);
     return iexQuote;
   }
 
@@ -115,12 +111,10 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
 
   @Override
   public List<IexQuote> findAllById(Iterable<String> tickers) {
-    System.out.println("Inside findAll");
     List<IexQuote> quotes = new ArrayList<>();
 
     for (String ticker : tickers) {
       if (ticker == null || ticker.trim().isEmpty()) {
-        System.out.println("invalid or empty ticker");
         throw new IllegalArgumentException("Invalid or empty ticker: " + ticker);
       }
 
@@ -132,9 +126,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
       if (response.isPresent()) {
         IexQuote quote = parseResponseBody(response.get(),ticker);
         quotes.add(quote);
-        System.out.println("findAll works");
       } else {
-        System.out.println("no response");
         throw new DataRetrievalFailureException("HTTP request failed for ticker: " + ticker);
       }
     }
@@ -185,9 +177,9 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     Double iexMarketPercent = jsonObject.optDouble("iexMarketPercent", Double.NaN);
     Integer iexVolume = jsonObject.optInt("iexVolume", 0);
     Integer avgTotalVolume = jsonObject.optInt("avgTotalVolume", 0);
-    Integer iexBidPrice = jsonObject.optInt("iexBidPrice", 0);
+    Double iexBidPrice = jsonObject.optDouble("iexBidPrice", 0);
     Integer iexBidSize = jsonObject.optInt("iexBidSize", 0);
-    Integer iexAskPrice = jsonObject.optInt("iexAskPrice", 0);
+    Double iexAskPrice = jsonObject.optDouble("iexAskPrice", 0);
     Integer iexAskSize = jsonObject.optInt("iexAskSize", 0);
     Double iexOpen = jsonObject.optDouble("iexOpen", Double.NaN);
     Long iexOpenTime = jsonObject.optLong("iexOpenTime", 0L);
